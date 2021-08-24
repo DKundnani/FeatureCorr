@@ -12,11 +12,14 @@ data(GTEXv7)
 
 \item{transformation}{type of transformation method ''Log2' or 'Z-score' or 'quantile' or 'NA' (no) transformaiton}
 
-\item{margin}{1 indicates rows, 2 indicates columns}
+\item{medianthres}{(optional)features have median below this numerical value are filtered or removed}
+
+\item{margin}{1 indicates rows, 2 indicates columns (default=2)}
 }
 \description{
 Transformation of data using one of the four mentioned methods and filtering based on median value
 }
 \examples{
-transdf <- data_transform(df=GTEXv7[,3:10],transformation='log2', marg=2);
+transdf<- data_transform(df=GTEXv7[,3:10],transformation='log2');
+transdf<- data_transform(df=GTEXv7[,3:10],transformation='log2', marg=2, medianthres=1);
 }
