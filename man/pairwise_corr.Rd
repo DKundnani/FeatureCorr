@@ -12,7 +12,7 @@ data(TCGA40)
 
 \item{featurelist}{list of features in the sequence as it occurs in the Dataframe}
 
-\item{featuregroup}{list of TRUE/FALSE values for features to be observed vs rest of the features}
+\item{featuregroup}{(optional)list of TRUE/FALSE values for features to be observed vs rest of the features(ordering/clustering is disabled)}
 
 \item{clusterorder}{Character, the ordering method of the correlation matrix.'original' for original order (default),'AOE' for the angular order of the eigenvectors, 'FPC' for the first principal component order, 'hclust' for the hierarchical clustering order, 'alphabet' for alphabetical order.}
 
@@ -22,7 +22,8 @@ data(TCGA40)
 Get Pair wise correlations for a given list of features
 }
 \examples{
-pairwisedf<-t(TCGA40[,3:ncol(TCGA40)]) 
+pairwisedf<-TCGA40[,3:ncol(TCGA40)]
+corr_pair<-pairwise_corr(df=pairwisedf,featurelist=rownames(pairwisedf), clusterorder="hclust")
 featgroup<-grepl( "RNASE",rownames(pairwisedf)) #optional
-pairwisecorr <- pairwise_corr(df=pairwisedf,featurelist=rownames(pairwisedf), featuregroup=featgroup, clusterorder="hclust");
+corr_pair<-pairwisecorr <- pairwise_corr(df=pairwisedf,featurelist=rownames(pairwisedf), featuregroup=featgroup);
 }
