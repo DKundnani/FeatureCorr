@@ -1,0 +1,39 @@
+Package: FeatureCorr
+Title: Finding associations through prime feature and pairwise correlations
+Version: 1.0.0
+Date: 2021-08-14
+Authors@R: 
+    person(given = "Deepali L.",
+           family = "Kundnani",
+           role = c("aut", "cre"),
+           email = "deepali.kundnani@gmail.com",
+           comment = c(ORCID = "0000-0002-2289-3554"))
+Description: R package for performing correlation analysis to find features/variables having similar degree of associations. The Package includes data preprocessing to transform the data and filtering out missing values,correlation of one feature with all features in an R dataframe. It also includes multiple and single pairwise correlation of a feature value Dataframe. 
+Depends: R (>= 4.0.2)
+Imports:
+    GeneNet (>= 1.2.15),         
+    ggExtra (>= 0.9),           
+    MASS (>= 7.3-51.6),        
+    ggpubr (>= 0.4.0),          
+    corrplot (>= 0.90),         
+    Hmisc (>= 4.5-0),
+    ggplot2 (>= 3.3.5),                       
+    rlang (>= 0.4.11),          
+    dplyr (>= 1.0.7),          
+    preprocessCore (>= 1.50.0)
+Suggests:
+    fdrtool (>= 1.2.16),
+    longitudinal (>= 1.1.12),
+    corpcor (>= 1.6.9),
+    Formula (>= 1.2-4),
+    survival (>= 3.1-12),
+    lattice (>= 0.20-41),
+    usethis (>= 2.0.1),
+    knitr
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/DKundnani/FeatureCorr
+VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
