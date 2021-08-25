@@ -20,6 +20,6 @@ data(GTEXv7)
 Transformation of data using one of the four mentioned methods and filtering based on median value
 }
 \examples{
-transdf<- data_transform(df=GTEXv7[,3:10],transformation='log2');
-transdf<- data_transform(df=GTEXv7[,3:10],transformation='log2', marg=2, medianthres=1);
+transdf<- data_transform(df=GTEXv7[,3:10],featurelist=GTEXv7[,2],transformation='log2');
+transdf<- data_transform(df=GTEXv7[,3:10],transformation='log2', featurelist=GTEXv7[,2], medianthres=1);
 }
