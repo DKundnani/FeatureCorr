@@ -11,16 +11,15 @@ ztransfun<-function(col){
 #' @param medianthres (optional)features have median below this numerical value are filtered or removed
 #'
 #' @examples
-#' transdf<- data_transform(df=GTEXv7[,3:10],transformation='log2');
-#' transdf<- data_transform(df=GTEXv7[,3:10],transformation='log2', marg=2, medianthres=1);
+#' transdf<- data_transform(df=GTEXv7[,3:10],featurelist=GTEXv7[,2],transformation='log2');
+#' transdf<- data_transform(df=GTEXv7[,3:10],transformation='log2', featurelist=GTEXv7[,2], medianthres=1);
 #' @docType data
 #'
 #' @usage data(GTEXv7)
 #'
 #' @export
-data_transform <- function(df,transformation='log2', marg=2, medianthres='NA'){
+data_transform <- function(df,transformation='log2',featurelist, medianthres='NA'){
 
-  if (marg==1){ df=as.data.frame(t(df))}
 
   if (transformation == 'log2') {
     newdf=log2(df+1)
@@ -38,25 +37,35 @@ data_transform <- function(df,transformation='log2', marg=2, medianthres='NA'){
   NewMedianValue<-apply(newdf, 1, median, na.rm=F)
   Median=data.frame("MedianValues of Original DAtaframe" = OldMedianValue,
                     "MedianValues of Transformed DAtaframe" = NewMedianValue)
-
+  newdf$feature<-featurelist
   if (medianthres!='NA'){
     newdf=newdf[NewMedianValue>=medianthres,]
-    NewMedianValue<-apply(newdf, 1, median, na.rm=F)
+    NewMedianValue<-NewMedianValue[NewMedianValue>=medianthres]
   }
 
 
   par(mfrow=c(2, 2), mar=c(15,5,2,2))
   Om=hist(OldMedianValue, breaks = 200, xlab = "Median Value", col="chocolate",lty="blank", main ="Distribution of Median Value in Original Dataframe")
   On=hist(NewMedianValue, breaks = 200, xlab = "Median Value", col="chocolate",lty="blank", main ="Distribution of Median Value in Transformed Dataframe")
-  OG.box<-boxplot(df, main ="Boxplots of Original Data", xaxt = "n")
-  axis(side = 1,las = 2, labels = FALSE)
-  text(x = 1:ncol(df),y = par("usr")[3] - 0.45,labels = colnames(df), srt = 90, adj=1.1, xpd = NA)
-  new.box<-boxplot(newdf, main ="Boxplots of Transformed Data", xaxt = "n")
-  axis(side = 1,las = 2, labels = FALSE)
-  text(x = 1:ncol(df),y = par("usr")[3] - 0.45,labels = colnames(df), srt = 90, adj=1.1, xpd = NA)
-  dist.plot<- recordPlot()
 
-  if (marg==1){ newdf=as.data.frame(t(newdf))}
+  if (ncol(df)<15) {
+    OG.box<-boxplot(df, main ="Boxplots of Original Data", xaxt = "n")
+    axis(side = 1,las = 2, labels = FALSE)
+    text(x = 1:ncol(df),y = par("usr")[3] - 0.45,labels = colnames(df), srt = 90, adj=1.1, xpd = NA)
+
+    if (medianthres!='NA') {
+      new.box<-boxplot(newdf[ , -which(names(newdf) %in% c("feature"))], main ="Boxplots of Transformed Data", xaxt = "n")
+      axis(side = 1,las = 2, labels = FALSE)
+      text(x = 1:ncol(df),y = par("usr")[3] - 0.45,labels = colnames(df), srt = 90, adj=1.1, xpd = NA)
+    } else {
+      new.box<-boxplot(newdf, main ="Boxplots of Transformed Data", xaxt = "n")
+      axis(side = 1,las = 2, labels = FALSE)
+      text(x = 1:ncol(df),y = par("usr")[3] - 0.45,labels = colnames(df), srt = 90, adj=1.1, xpd = NA)
+    }
+
+  }
+
+  dist.plot<- recordPlot()
 
   return(list(newdf,Median,dist.plot))
 
