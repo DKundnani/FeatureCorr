@@ -15,59 +15,55 @@ library(GeneNet)
 #' @param primefeature one feature of interest to measure correlation against all other features
 #'
 #' @examples
-#' primefcorr <- primefeature_corr(df=GTEXv7[,3:ncol(GTEXv7)],featurelist=GTEXv7[,2] ,primefeature="RNASEH2A");
+#' transdf<- data_transform(df=GTEXv7[,3:ncol(GTEXv7)],transformation='log2', featurelist=GTEXv7[,2], medianthres=0.5)
+#' inputdf<-transdf[[1]] #First item in the list returned is the transformed Data
+#' primefcorr <- primefeature_corr(df=inputdf[,-ncol(inputdf)],featurelist=inputdf$feature ,primefeature="RNASEH2A");
 #' @docType data
 #'
 #' @usage data(GTEXv7)
 #'
 #' @export
-primefeature_corr <- function(df,featurelist,primefeature, quantiles=c(0,0.01,.01,.05,0.10,.25,.50,.75,.90,.95,.99,.999,1)){
+#'
+primefeature_corr <- function(df,featurelist,primefeature,corrmeth='pearson', quantiles=c(0,0.01,.01,.05,0.10,.25,.50,.75,.90,.95,.99,.999,1)){
   if (length(featurelist)!=nrow(df) && length(primefeature)>1) { stop("Error: Make sure the length of feature list is same as the number of rows in the dataframe and there is only one prime feature.n", call. = FALSE) }
   c=ncol(df)
   r=nrow(df)
-  spearman_corr<-rep(NA, r)
-  spearman_pval<-rep(NA, r)
-  pearson_corr<-rep(NA, r)
-  pearson_pval<-rep(NA, r)
+  corr<-rep(NA, r)
+  pval<-rep(NA, r)
+
 
   x=match(primefeature, featurelist)
   if (is.na(x)) {  stop("Primefeature not found in feature list.n", call. = FALSE)}
 
   writeLines("Calculating Correlation Coefficients")
   for (i in 1:r){
-    s<-cor.test(as.numeric(df[i,]), as.numeric(df[x,]), method='spearman')
-    spearman_corr[i]<-s$estimate
-    spearman_pval[i]<-s$p.value
 
-    p<-cor.test(as.numeric(df[i,]), as.numeric(df[x,]), method='pearson')
-    pearson_corr[i]<-p$estimate
-    pearson_pval<-p$p.value
+    p<-cor.test(as.numeric(df[i,]), as.numeric(df[x,]), method=corrmeth)
+    corr[i]<-p$estimate
+    pval<-p$p.value
   }
 
   df$Features<-featurelist
-  df$Spearman_correlation_Coefficient<-spearman_corr
-  df$Spearman_correlation_pvalue<-spearman_pval
-  df$Pearson_correlation_Coefficient<-pearson_corr
-  df$Pearson_correlation_pvalue<-pearson_pval
+  df$Correlation_Coefficient<-corr
+  df$Correlation_pvalue<-pval
+
   correlations<-df[,(c+1):ncol(df)]
 
   writeLines("Calculating Distribution Statistics")
-  quantiles_Spearman.df<-quantile(df$Spearman_correlation_Coefficient, quantiles)
-  quantiles_Pearson.df<-quantile(df$Pearson_correlation_Coefficient, quantiles)
 
-  quant=data.frame("Speaman Correlation Coefficient Quantiles" = quantiles_Spearman.df,
-                   "Pearson Correlation Coefficient Quantiles" = quantiles_Pearson.df)
+  quantiles<-quantile(df$Correlation_Coefficient, quantiles)
 
-  writeLines("Plotting Correlation _Coefficient Distribution")
 
-  par(mfrow=c(2, 1), mar=c(7,5,1,1))
-  s=hist(df$Spearman_correlation_Coefficient, breaks = 20, xlab = "Spearman Correlation Coefficient", col="steelblue3", main ="Distribution of Spearman Correlation Coefficient")
-  p=hist(df$Pearson_correlation_Coefficient, breaks = 20, xlab = "Pearson Correlation Coefficient", col="seagreen4", main ="Distribution of Pearson Correlation Coefficient")
+  writeLines("Plotting Correlation Coefficient Distribution")
+
+  par(mfrow=c(1, 1), mar=c(7,5,1,1))
+  s=hist(df$Correlation_Coefficient, breaks = 200, xlab = "Correlation Coefficient", col="steelblue3", main ="Distribution of Correlation Coefficient")
+
   freq.plot<- recordPlot()
 
-  finaloutput<-list(df,correlations, quant,s,p,freq.plot)
+  finaloutput<-list(df,correlations, quantiles,s,freq.plot)
 
-  names(finaloutput) <- c("DatawithCorr", "Correlations","Quantiles","Spearmann_Corr.freq","Pearson.freq",  "Frequency_Dist")
+  names(finaloutput) <- c("DatawithCorr", "Correlations","Quantiles","Corr.freq",  "Frequency_Dist")
   return(finaloutput)
 }
 
@@ -83,7 +79,7 @@ primefeature_corr <- function(df,featurelist,primefeature, quantiles=c(0,0.01,.0
 #' @examples
 #' pairwisedf<-TCGA40[,3:ncol(TCGA40)]
 #' corr_pair<-pairwise_corr(df=pairwisedf,featurelist=rownames(pairwisedf), clusterorder="hclust")
-#' featgroup<-grepl( "RNASE",rownames(pairwisedf)) #optional
+#' featgroup<-grepl( "RNASE",rownames(pairwisedf)) #optional, a set of features to separated
 #' corr_pair<-pairwisecorr <- pairwise_corr(df=pairwisedf,featurelist=rownames(pairwisedf), featuregroup=featgroup);
 #' @docType data
 #'
