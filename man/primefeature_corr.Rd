@@ -18,5 +18,7 @@ data(GTEXv7)
 Get Correlation Coefficient and its distribution of a single prime feature with all the other features
 }
 \examples{
-primefcorr <- primefeature_corr(df=GTEXv7[,3:ncol(GTEXv7)],featurelist=GTEXv7[,2] ,primefeature="RNASEH2A");
+transdf<- data_transform(df=GTEXv7[,3:ncol(GTEXv7)],transformation='log2', featurelist=GTEXv7[,2], medianthres=0.5)
+inputdf<-transdf[[1]] #First item in the list returned is the transformed Data
+primefcorr <- primefeature_corr(df=inputdf[,-ncol(inputdf)],featurelist=inputdf$feature ,primefeature="RNASEH2A");
 }
