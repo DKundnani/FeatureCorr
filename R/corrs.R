@@ -104,7 +104,7 @@ pairwise_corr <- function(df,featurelist, featuregroup='NA', clusterorder="hclus
 
 #' Pair Scatter
 #'
-#' Scatter between two chosen features
+#' Scatter between two chosen features.
 #' @param df numerical dataframe with rows having series of values for a single feature
 #' @param featurelist list of features in the sequence as it occurs in the Dataframe
 #' @param feature1,feature2 Features to be compared
@@ -114,7 +114,7 @@ pairwise_corr <- function(df,featurelist, featuregroup='NA', clusterorder="hclus
 #' @usage data(TCGA40)
 #'
 #' @examples
-#' featgroup<-grepl( "RNASE",rownames(TCGA40)) #optional
+#' pscatter <- pair_scatter(df=inputdf[,-ncol(inputdf)],featurelist=inputdf$feature,feature1="RNASEH2A",feature2="RNASEH2C");
 #' pscatter <- pair_scatter(df=TCGA40,featurelist=rownames(TCGA40), feature1="RNASEH2A", feature2="RNASEH2C");
 #' @export
 pair_scatter <- function(df,featurelist, feature1, feature2){
