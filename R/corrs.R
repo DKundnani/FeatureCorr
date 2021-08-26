@@ -148,8 +148,10 @@ pair_scatter <- function(df,featurelist, feature1, feature2,corrmeth='pearson'){
   contour(kern, drawlabels = FALSE, nlevels = 6,
           col = rev(heat.colors(6)), add = TRUE, lwd = 3)
   q <- recordPlot()
+
   ## clean up device
-  q
+  plot.new()
+
   return(list(p,q))
 }
 
