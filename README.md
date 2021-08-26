@@ -86,16 +86,6 @@ pair_scatter(df=logTCGA40,featurelist=rownames(logTCGA40),feature1="RNASEH2A", f
 
 <img src="man/figures/README-checking-pairwise-scatter-3.png" width="100%" /><img src="man/figures/README-checking-pairwise-scatter-4.png" width="100%" />
 
-``` r
-
-#Scatter produced as second item of the output list
-pair_scatter(df=logTCGA40,featurelist=rownames(logTCGA40),feature1="RNASEH2A", feature2="PCNA", corrmeth='pearson')[[2]]
-#> `geom_smooth()` using formula 'y ~ x'
-#> `geom_smooth()` using formula 'y ~ x'
-```
-
-<img src="man/figures/README-checking-pairwise-scatter-5.png" width="100%" /><img src="man/figures/README-checking-pairwise-scatter-6.png" width="100%" />
-
 Visualizing Multiple Pair-wise Correlation using
 FeatureCorr::pairwise\_corr function
 
