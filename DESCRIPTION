@@ -32,6 +32,7 @@ Suggests:
     usethis (>= 2.0.1),
     knitr
 License: GPL (>= 3)
+Language: R
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/DKundnani/FeatureCorr
