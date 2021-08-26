@@ -9,7 +9,7 @@ Authors@R:
            email = "deepali.kundnani@gmail.com",
            comment = c(ORCID = "0000-0002-2289-3554"))
 Description: R package for performing correlation analysis to find features/variables having similar degree of associations. The Package includes data preprocessing to transform the data and filtering out missing values,correlation of one feature with all features in an R dataframe. It also includes multiple and single pairwise correlation of a feature value Dataframe. 
-Depends: R (>= 4.0.2)
+Depends: R (>= 4.0.0)
 Imports:
     GeneNet (>= 1.2.15),         
     ggExtra (>= 0.9),           
@@ -20,7 +20,8 @@ Imports:
     ggplot2 (>= 3.3.5),                       
     rlang (>= 0.4.11),          
     dplyr (>= 1.0.7),          
-    preprocessCore (>= 1.50.0)
+    preprocessCore (>= 1.50.0),
+    KernSmooth (>= 2.23-17)
 Suggests:
     fdrtool (>= 1.2.16),
     longitudinal (>= 1.1.12),
