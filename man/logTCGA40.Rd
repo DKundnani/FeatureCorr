@@ -3,7 +3,7 @@
 \docType{data}
 \name{logTCGA40}
 \alias{logTCGA40}
-\title{Gene-Tissue Expression (GTEx) Dataset v7}
+\title{The Cancer Genome Atlas, Pan Cancer Study Dataset for selected genes(log transformed)}
 \format{
 A data frame with 40 rows and 10071 columns:
 }
@@ -12,6 +12,6 @@ logTCGA40
 }
 \description{
 Log 2 transformed dataset containing the expression of
-40 genes in 10071 human cancer samples(tissues or cells)
+40 genes in 2000 human cancer samples(tissues or cells)
 }
 \keyword{datasets}

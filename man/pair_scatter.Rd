@@ -21,7 +21,9 @@ Pair Scatter
 Scatter between two chosen features.
 }
 \examples{
-pscatter <- pair_scatter(df=TCGA40,featurelist=rownames(TCGA40),feature1="RNASEH2A",feature2="PCNA", corrmeth='pearson')
-pscatter <- pair_scatter(df=logTCGA40,featurelist=rownames(logTCGA40),feature1="RNASEH2A", feature2="PCNA", corrmeth='pearson')
+pscatter <- pair_scatter(df=TCGA40,featurelist=rownames(TCGA40),
+                         feature1="RNASEH2A",feature2="PCNA", corrmeth='pearson')
+pscatter <- pair_scatter(df=logTCGA40,featurelist=rownames(logTCGA40),
+                         feature1="RNASEH2A", feature2="PCNA", corrmeth='pearson')
 
 }

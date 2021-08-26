@@ -5,7 +5,7 @@
 \alias{TCGA40}
 \title{The Cancer Genome Atlas, Pan Cancer Study Dataset for selected genes}
 \format{
-A data frame with 40 rows and 10071 columns:
+A data frame with 40 rows and 2000 columns:
 }
 \source{
 \url{https://www.cbioportal.org/}

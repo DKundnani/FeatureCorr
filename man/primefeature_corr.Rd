@@ -24,8 +24,9 @@ Prime Feature Correlation
 Get Correlation Coefficient and its distribution of a single prime feature with all the other features
 }
 \examples{
-transdf<- data_transform(df=GTEXv7[-1],transformation='log2', featurelist=GTEXv7$Description, medianthres=0.5)
+transdf<- data_transform(df=GTEX[-1],transformation='log2',
+                         featurelist=GTEX$Description, medianthres=1)
 inputdf<-transdf[[1]] #First item in the list returned is the transformed Data
-primefcorr <- primefeature_corr(df=inputdf,featurelist=rownames(inputdf) ,primefeature="RNASEH2A");
+primefcorr <- primefeature_corr(df=inputdf,featurelist=rownames(inputdf),primefeature="RNASEH2A");
 
 }

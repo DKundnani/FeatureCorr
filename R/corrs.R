@@ -21,9 +21,10 @@
 #' (default = c(0,0.01,.01,.05,0.10,.25,.50,.75,.90,.95,.99,.999,1) )
 #'
 #' @examples
-#' transdf<- data_transform(df=GTEXv7[-1],transformation='log2', featurelist=GTEXv7$Description, medianthres=0.5)
+#' transdf<- data_transform(df=GTEX[-1],transformation='log2',
+#'                          featurelist=GTEX$Description, medianthres=1)
 #' inputdf<-transdf[[1]] #First item in the list returned is the transformed Data
-#' primefcorr <- primefeature_corr(df=inputdf,featurelist=rownames(inputdf) ,primefeature="RNASEH2A");
+#' primefcorr <- primefeature_corr(df=inputdf,featurelist=rownames(inputdf),primefeature="RNASEH2A");
 #'
 #' @usage primefeature_corr(df,featurelist,primefeature,corrmeth,quantiles)
 #'
@@ -71,6 +72,7 @@ primefeature_corr <- function(df,featurelist,primefeature, corrmeth='pearson', q
   return(finaloutput)
 }
 
+
 #' Pairwise Correlation
 #'
 #' Get Pair wise correlations for a given list of features
@@ -83,7 +85,8 @@ primefeature_corr <- function(df,featurelist,primefeature, corrmeth='pearson', q
 #' @examples
 #' corr_pair<-pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40), visorder="hclust")
 #' featgroup<-grepl( "RNASE",rownames(logTCGA40)) #optional, a set of TRUE/FALSE of length featurelist
-#' corr_pair<-pairwisecorr <- pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40),featuregroup=featgroup)
+#' corr_pair<-pairwisecorr <- pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40),
+#'                                          featuregroup=featgroup)
 #'
 #' @usage pairwise_corr(df,featurelist, featuregroup,visorder,corrmeth)
 #'
@@ -93,12 +96,15 @@ pairwise_corr <- function(df,featurelist, featuregroup='NA', visorder="hclust", 
   rownames(df)<-featurelist
   corr_pair<-rcorr(t(as.matrix(df)), type=corrmeth)
   par(mfrow=c(1, 1), mar=c(1,4,4,8))
+
   if (length(featuregroup) == 1) {
-    corrplot(corr_pair$r,type = "full", order =  "hclust",addrect = 2,method = "square",tl.col = "black",tl.srt = 45, cl.cex = 1.3, pch.cex = 0.5)
+    corrplot(corr_pair$r,type = "full", order =  "hclust",addrect = 2,method = "square",tl.col = "black",tl.srt = 60, cl.cex = 1.3, pch.cex = 0.5, tl.cex = 0.7)
     out=list(corr_pair$r,corr_pair$P)
+
   } else {
-    corrplot(corr_pair$r[featuregroup,!featuregroup],method = "square",tl.col = "black",tl.srt = 90, cl.cex = 1.3, pch.cex = 0.5, is.corr = FALSE, cl.pos = 'b', cl.ratio = 0.6,)
+    corrplot(corr_pair$r[featuregroup,!featuregroup],method = "square",tl.col = "black",tl.srt = 90, cl.cex = 1.3, pch.cex = 0.5, is.corr = FALSE, cl.pos = 'b', cl.ratio = 0.6)
     out=list(corr_pair$r,corr_pair$P)
+
   }
   return(out)
 
@@ -120,8 +126,10 @@ pairwise_corr <- function(df,featurelist, featuregroup='NA', visorder="hclust", 
 #' @usage pair_scatter(df,featurelist, feature1, feature2, corrmeth)
 #'
 #' @examples
-#' pscatter <- pair_scatter(df=TCGA40,featurelist=rownames(TCGA40),feature1="RNASEH2A",feature2="PCNA", corrmeth='pearson')
-#' pscatter <- pair_scatter(df=logTCGA40,featurelist=rownames(logTCGA40),feature1="RNASEH2A", feature2="PCNA", corrmeth='pearson')
+#' pscatter <- pair_scatter(df=TCGA40,featurelist=rownames(TCGA40),
+#'                          feature1="RNASEH2A",feature2="PCNA", corrmeth='pearson')
+#' pscatter <- pair_scatter(df=logTCGA40,featurelist=rownames(logTCGA40),
+#'                          feature1="RNASEH2A", feature2="PCNA", corrmeth='pearson')
 #'
 #' @export
 pair_scatter <- function(df,featurelist, feature1, feature2,corrmeth='pearson'){
@@ -130,10 +138,9 @@ pair_scatter <- function(df,featurelist, feature1, feature2,corrmeth='pearson'){
   data=as.data.frame(t(df))
   colnames(data)<-featurelist
   #scatter plot
-  par(mfrow = c(1, 1))
-  p<- ggscatter(data, x = feature1 , y = feature2, color = "#2c7fb8", margin.params = list(fill = "lightgray"), add = "reg.line", add.params = list(color='red', fille='lightgray'),conf.int = TRUE, cor.coef = TRUE, cor.coeff.args = list(method=corrmeth,label.x.npc = 0,label.y.npc = 1, size=10)) +theme_bw()
-  ggMarginal(p, size = 2, type = "histogram", col = "blue", fill = "#2c7fb8")
-  p <- recordPlot()
+  #par(mfrow = c(1, 1))
+  o <- ggscatter(data, x = feature1 , y = feature2, color = "#2c7fb8", margin.params = list(fill = "lightgray"), add = "reg.line", add.params = list(color='red', fille='lightgray'),conf.int = TRUE, cor.coef = TRUE, cor.coeff.args = list(method=corrmeth,label.x.npc = 0,label.y.npc = 1, size=10)) +theme_bw()
+  p <-ggMarginal(o, size = 2, type = "histogram", col = "blue", fill = "#2c7fb8")
 
   plot.new()
   kern <- kde2d(as.numeric(unlist(data[feature1])),as.numeric(unlist(data[feature2])))
@@ -145,7 +152,6 @@ pair_scatter <- function(df,featurelist, feature1, feature2,corrmeth='pearson'){
   q
   return(list(p,q))
 }
-
 
 
 
