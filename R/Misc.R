@@ -4,7 +4,6 @@ ztransfun<-function(col){
 #' Data Transformation and filtration
 #' Transformation of data using one of the four mentioned methods and filtering based on median value
 #'
-#' @import preprocessCore
 #'
 #' @param df numerical dataframe with rows having series of values for a single feature
 #' @param transformation type of transformation method ''Log2' or 'Z-score' or 'quantile' or 'NA' (no) transformaiton
@@ -14,6 +13,7 @@ ztransfun<-function(col){
 #' @usage data_transform(df,transformation,featurelist, medianthres)
 #'
 #' @examples
+#' data("GTEX") #Load GTEX data names GTEXv7
 #' transdf<- data_transform(df=GTEXv7[-1],transformation='log2', featurelist=GTEXv7$Description)
 #' transdf<- data_transform(df=GTEXv7[-1],transformation='log2', featurelist=GTEXv7$Description,
 #'                          medianthres=1)
@@ -29,6 +29,9 @@ data_transform <- function(df,transformation='log2',featurelist, medianthres='NA
   } else if (transformation == 'Z-score') {
     newdf<-apply(df, 2, ztransfun)
   } else if (transformation == 'quantile') {
+    if (!requireNamespace("BiocManager", quietly = TRUE))
+      install.packages("BiocManager")
+    BiocManager::install(c("preprocessCore"))
     newdf<-normalize.quantiles(as.matrix(df))
   } else if (transformation == 'NA') {
     newdf<-normalize.quantiles(as.matrix(df))

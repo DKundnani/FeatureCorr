@@ -1,6 +1,6 @@
 Package: FeatureCorr
 Title: Finding associations through prime feature and pairwise correlations
-Version: 1.0.1
+Version: 0.99.0
 Date: 2021-08-14
 Authors@R: 
     person(given = "Deepali L.",
@@ -20,8 +20,8 @@ Imports:
     ggplot2 (>= 3.3.5),                       
     rlang (>= 0.4.11),          
     dplyr (>= 1.0.7),          
-    preprocessCore (>= 1.50.0),
-    KernSmooth (>= 2.23-17)
+    KernSmooth (>= 2.23-17),
+    BiocManager (>= 1.30.16)
 Suggests:
     fdrtool (>= 1.2.16),
     longitudinal (>= 1.1.12),
@@ -29,12 +29,11 @@ Suggests:
     Formula (>= 1.2-4),
     survival (>= 3.1-12),
     lattice (>= 0.20-41),
-    usethis (>= 2.0.1),
     knitr
-License: GPL (>= 3)
+License: GPL-3 
 Language: R
 Encoding: UTF-8
-LazyData: true
+LazyData: FALSE
 URL: https://github.com/DKundnani/FeatureCorr
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)

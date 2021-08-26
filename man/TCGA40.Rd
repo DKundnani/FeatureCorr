@@ -6,9 +6,6 @@
 \title{The Cancer Genome Atlas, Pan Cancer Study Dataset for selected genes}
 \format{
 A data frame with 40 rows and 10071 columns:
-\describe{
-\item{rownames}{Gene names(feature identifiers)}
-}
 }
 \source{
 \url{https://www.cbioportal.org/}

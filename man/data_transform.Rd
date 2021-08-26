@@ -21,6 +21,7 @@ Data Transformation and filtration
 Transformation of data using one of the four mentioned methods and filtering based on median value
 }
 \examples{
+data("GTEX") #Load GTEX data names GTEXv7
 transdf<- data_transform(df=GTEXv7[-1],transformation='log2', featurelist=GTEXv7$Description)
 transdf<- data_transform(df=GTEXv7[-1],transformation='log2', featurelist=GTEXv7$Description,
                          medianthres=1)

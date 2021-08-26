@@ -6,9 +6,6 @@
 \title{Gene-Tissue Expression (GTEx) Dataset v7}
 \format{
 A data frame with 42136 rows and 54 columns:
-\describe{
-\item{Description}{Gene names(feature identifiers)}
-}
 }
 \source{
 \url{https://www.genome.gov/Funded-Programs-Projects/Genotype-Tissue-Expression-Project}

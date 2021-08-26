@@ -21,7 +21,7 @@ pairwise_corr(df,featurelist, featuregroup,visorder,corrmeth)
 Get Pair wise correlations for a given list of features
 }
 \examples{
-pairwisedf<-TCGA40[,3:ncol(TCGA40)]
+data("logTCGA40") #Load log transformed TCGAdata for 40 genes
 corr_pair<-pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40), visorder="hclust")
 featgroup<-grepl( "RNASE",rownames(logTCGA40)) #optional, a set of features to separated
 corr_pair<-pairwisecorr <- pairwise_corr(df=pairwisedf,featurelist=rownames(pairwisedf),

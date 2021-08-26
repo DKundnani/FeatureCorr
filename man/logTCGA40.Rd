@@ -6,9 +6,6 @@
 \title{Gene-Tissue Expression (GTEx) Dataset v7}
 \format{
 A data frame with 40 rows and 10071 columns:
-\describe{
-\item{rownames}{Gene names(feature identifiers)}
-}
 }
 \usage{
 logTCGA40
