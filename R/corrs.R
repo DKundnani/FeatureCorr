@@ -21,16 +21,13 @@
 #' (default = c(0,0.01,.01,.05,0.10,.25,.50,.75,.90,.95,.99,.999,1) )
 #'
 #' @examples
-#' data("GTEX") #Load GTEX data names GTEXv7
-#' transdf<- data_transform(df=GTEXv7[-1],transformation='log2', featurelist=GTEXv7$Description,
-#'                          medianthres=0.5)
+#' transdf<- data_transform(df=GTEXv7[-1],transformation='log2', featurelist=GTEXv7$Description, medianthres=0.5)
 #' inputdf<-transdf[[1]] #First item in the list returned is the transformed Data
 #' primefcorr <- primefeature_corr(df=inputdf,featurelist=rownames(inputdf) ,primefeature="RNASEH2A");
 #'
 #' @usage primefeature_corr(df,featurelist,primefeature,corrmeth,quantiles)
 #'
 #' @export
-#'
 primefeature_corr <- function(df,featurelist,primefeature, corrmeth='pearson', quantiles=c(0,0.01,.01,.05,0.10,.25,.50,.75,.90,.95,.99,.999,1)){
   if (length(featurelist)!=nrow(df) && length(primefeature)>1) { stop("Error: Make sure the length of feature list is same as the number of rows in the dataframe and there is only one prime feature.n", call. = FALSE) }
   c=ncol(df)
@@ -84,12 +81,9 @@ primefeature_corr <- function(df,featurelist,primefeature, corrmeth='pearson', q
 #' @param corrmeth Correlation method used. 'pearson' or 'spearman' (default='pearson')
 #'
 #' @examples
-#' data("logTCGA40") #Load log transformed TCGAdata for 40 genes
 #' corr_pair<-pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40), visorder="hclust")
-#' featgroup<-grepl( "RNASE",rownames(logTCGA40)) #optional, a set of TRUE/FALSE
-#'                         corresponding to features of interest from featurelist
-#' corr_pair<-pairwisecorr <- pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40),
-#'                                        featuregroup=featgroup)
+#' featgroup<-grepl( "RNASE",rownames(logTCGA40)) #optional, a set of TRUE/FALSE of length featurelist
+#' corr_pair<-pairwisecorr <- pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40),featuregroup=featgroup)
 #'
 #' @usage pairwise_corr(df,featurelist, featuregroup,visorder,corrmeth)
 #'
@@ -126,12 +120,8 @@ pairwise_corr <- function(df,featurelist, featuregroup='NA', visorder="hclust", 
 #' @usage pair_scatter(df,featurelist, feature1, feature2, corrmeth)
 #'
 #' @examples
-#' data("TCGA40") #Load TCGAdata for 40 genes
-#' data("logTCGA40") #Load log transformed TCGAdata for 40 genes
-#' pscatter <- pair_scatter(df=TCGA40,featurelist=rownames(TCGA40),
-#'                         feature1="RNASEH2A",feature2="PCNA", corrmeth='pearson')
-#' pscatter <- pair_scatter(df=logTCGA40,featurelist=rownames(logTCGA40),
-#'                         feature1="RNASEH2A", feature2="PCNA", corrmeth='pearson')
+#' pscatter <- pair_scatter(df=TCGA40,featurelist=rownames(TCGA40),feature1="RNASEH2A",feature2="PCNA", corrmeth='pearson')
+#' pscatter <- pair_scatter(df=logTCGA40,featurelist=rownames(logTCGA40),feature1="RNASEH2A", feature2="PCNA", corrmeth='pearson')
 #'
 #' @export
 pair_scatter <- function(df,featurelist, feature1, feature2,corrmeth='pearson'){

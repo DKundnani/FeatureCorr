@@ -13,12 +13,8 @@ ztransfun<-function(col){
 #' @usage data_transform(df,transformation,featurelist, medianthres)
 #'
 #' @examples
-#' data("GTEX") #Load GTEX data names GTEXv7
 #' transdf<- data_transform(df=GTEXv7[-1],transformation='log2', featurelist=GTEXv7$Description)
-#' transdf<- data_transform(df=GTEXv7[-1],transformation='log2', featurelist=GTEXv7$Description,
-#'                          medianthres=1)
-#'
-#'
+#' transdf<- data_transform(df=GTEXv7[-1],transformation='log2', featurelist=GTEXv7$Description, medianthres=1)
 #'
 #' @export
 data_transform <- function(df,transformation='log2',featurelist, medianthres='NA'){

@@ -21,11 +21,7 @@ Pair Scatter
 Scatter between two chosen features.
 }
 \examples{
-data("TCGA40") #Load TCGAdata for 40 genes
-data("logTCGA40") #Load log transformed TCGAdata for 40 genes
-pscatter <- pair_scatter(df=TCGA40,featurelist=rownames(TCGA40),
-                        feature1="RNASEH2A",feature2="PCNA", corrmeth='pearson')
-pscatter <- pair_scatter(df=logTCGA40,featurelist=rownames(logTCGA40),
-                        feature1="RNASEH2A", feature2="PCNA", corrmeth='pearson')
+pscatter <- pair_scatter(df=TCGA40,featurelist=rownames(TCGA40),feature1="RNASEH2A",feature2="PCNA", corrmeth='pearson')
+pscatter <- pair_scatter(df=logTCGA40,featurelist=rownames(logTCGA40),feature1="RNASEH2A", feature2="PCNA", corrmeth='pearson')
 
 }

@@ -33,7 +33,7 @@ Suggests:
 License: GPL-3 
 Language: R
 Encoding: UTF-8
-LazyData: FALSE
+LazyData: true
 URL: https://github.com/DKundnani/FeatureCorr
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
