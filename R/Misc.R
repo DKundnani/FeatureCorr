@@ -1,21 +1,24 @@
-library(preprocessCore)
 ztransfun<-function(col){
   (col-mean(as.numeric(unlist(col))))/sd(as.numeric(unlist(col)))
 }
 #' Data Transformation and filtration
-#'
 #' Transformation of data using one of the four mentioned methods and filtering based on median value
+#'
+#' @import preprocessCore
+#'
 #' @param df numerical dataframe with rows having series of values for a single feature
 #' @param transformation type of transformation method ''Log2' or 'Z-score' or 'quantile' or 'NA' (no) transformaiton
-#' @param margin 1 indicates rows, 2 indicates columns (default=2)
+#' @param featurelist listing of feature names or ids to measure correlation between
 #' @param medianthres (optional)features have median below this numerical value are filtered or removed
 #'
-#' @examples
-#' transdf<- data_transform(df=GTEXv7[,3:10],featurelist=GTEXv7[,2],transformation='log2');
-#' transdf<- data_transform(df=GTEXv7[,3:10],transformation='log2', featurelist=GTEXv7[,2], medianthres=1);
-#' @docType data
+#' @usage data_transform(df,transformation,featurelist, medianthres)
 #'
-#' @usage data(GTEXv7)
+#' @examples
+#' transdf<- data_transform(df=GTEXv7[-1],transformation='log2', featurelist=GTEXv7$Description)
+#' transdf<- data_transform(df=GTEXv7[-1],transformation='log2', featurelist=GTEXv7$Description,
+#'                          medianthres=1)
+#'
+#'
 #'
 #' @export
 data_transform <- function(df,transformation='log2',featurelist, medianthres='NA'){
@@ -32,21 +35,25 @@ data_transform <- function(df,transformation='log2',featurelist, medianthres='NA
   } else {stop("There is no such transformation available")}
 
   colnames(newdf)<-colnames(df)
+  rownames(newdf)<-featurelist
 
   OldMedianValue<-apply(df, 1, median, na.rm=F)
   NewMedianValue<-apply(newdf, 1, median, na.rm=F)
   Median=data.frame("MedianValues of Original DAtaframe" = OldMedianValue,
                     "MedianValues of Transformed DAtaframe" = NewMedianValue)
-  newdf$feature<-featurelist
+
   if (medianthres!='NA'){
     newdf=newdf[NewMedianValue>=medianthres,]
     NewMedianValue<-NewMedianValue[NewMedianValue>=medianthres]
   }
 
-
-  par(mfrow=c(2, 2), mar=c(15,5,2,2))
-  Om=hist(OldMedianValue, breaks = 200, xlab = "Median Value", col="chocolate",lty="blank", main ="Distribution of Median Value in Original Dataframe")
-  On=hist(NewMedianValue, breaks = 200, xlab = "Median Value", col="chocolate",lty="blank", main ="Distribution of Median Value in Transformed Dataframe")
+  if (ncol(df)<15) {
+    par(mfrow=c(2, 2), mar=c(15,5,2,2))
+  } else {
+    par(mfrow=c(1, 2), mar=c(5,5,2,2))
+  }
+  Om=hist(OldMedianValue, breaks = 200, xlab = "Median Value", col="chocolate",lty="blank", main ="Original Data")
+  On=hist(NewMedianValue, breaks = 200, xlab = "Median Value", col="chocolate",lty="blank", main ="Transformed Data")
 
   if (ncol(df)<15) {
     OG.box<-boxplot(df, main ="Boxplots of Original Data", xaxt = "n")
