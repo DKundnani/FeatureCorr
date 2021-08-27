@@ -4,7 +4,7 @@
 # FeatureCorr
 
 <!-- badges: start -->
-
+[![R-CMD-check](https://github.com/DKundnani/FeatureCorr/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/DKundnani/FeatureCorr/actions/workflows/check-standard.yaml)
 <!-- badges: end -->
 
 An R package to study feature correlations aided with data
