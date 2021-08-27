@@ -4,6 +4,7 @@
 # FeatureCorr
 
 <!-- badges: start -->
+
 [![R-CMD-check](https://github.com/DKundnani/FeatureCorr/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/DKundnani/FeatureCorr/actions/workflows/check-standard.yaml)
 <!-- badges: end -->
 
@@ -12,14 +13,7 @@ transformation for Next Generation sequencing and microarray data
 
 ## Installation
 
-You can install the released version of FeatureCorr from
-[CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("FeatureCorr")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+The development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
