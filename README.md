@@ -6,7 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/DKundnani/FeatureCorr/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/DKundnani/FeatureCorr/actions/workflows/check-standard.yaml)
-[![Open in Code Ocean](https://codeocean.com/codeocean-assets/badge/open-in-code-ocean.svg)](https://codeocean.com/capsule/7549295/tree)
+[![Open in Code
+Ocean](https://codeocean.com/codeocean-assets/badge/open-in-code-ocean.svg)](https://codeocean.com/capsule/7549295/tree)
 <!-- badges: end -->
 
 An R package to study feature correlations aided with data
@@ -14,7 +15,7 @@ transformation for Next Generation sequencing and microarray data
 
 ## Installation
 
-Get FeatureCorr from [GitHub](https://github.com/) with:
+The development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -87,7 +88,7 @@ FeatureCorr::pairwise\_corr function
 ``` r
 
 #Multiple pairwise correlation for 40 genes in ~10K samples in The Cancer Genome Atlas-Pan Cancer dataset
-corr_pair<-pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40), visorder="hclust")
+corr_pair<-pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40), visorder="hclust", clustno=2)
 ```
 
 <img src="man/figures/README-multiple-pairwise-correlation-1.png" width="100%" />
