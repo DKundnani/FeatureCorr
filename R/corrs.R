@@ -81,24 +81,24 @@ primefeature_corr <- function(df,featurelist,primefeature, corrmeth='pearson', q
 #' @param featuregroup (optional)list of TRUE/FALSE values for features to be observed vs rest of the features(ordering/clustering is disabled)
 #' @param visorder  The ordering method of the correlation matrix.'original' for original order ,'AOE' for the angular order of the eigenvectors, 'FPC' for the first principal component order, 'hclust'(default) for the hierarchical clustering order, 'alphabet' for alphabetical order.
 #' @param corrmeth Correlation method used. 'pearson' or 'spearman' (default='pearson')
-#'
+#' @param clustno number of clusters expected to be drawn on the plot (default = NULL)
 #' @examples
-#' corr_pair<-pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40), visorder="hclust")
+#' corr_pair<-pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40), visorder="hclust", clustno=2)
 #' featgroup<-grepl( "RNASE",rownames(logTCGA40)) #optional, a set of TRUE/FALSE of length featurelist
 #' corr_pair<-pairwisecorr <- pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40),
 #'                                          featuregroup=featgroup)
 #'
-#' @usage pairwise_corr(df,featurelist, featuregroup,visorder,corrmeth)
+#' @usage pairwise_corr(df,featurelist, featuregroup,visorder,corrmeth, clustno=NULL)
 #'
 #' @export
-pairwise_corr <- function(df,featurelist, featuregroup='NA', visorder="hclust", corrmeth='pearson'){
+pairwise_corr <- function(df,featurelist, featuregroup='NA', visorder="hclust", corrmeth='pearson', clustno = NULL){
   if (length(featurelist)!=nrow(df)) { stop("Error: Make sure the length of feature list is same as the number of rows in the dataframe", call. = FALSE) }
   rownames(df)<-featurelist
   corr_pair<-rcorr(t(as.matrix(df)), type=corrmeth)
   par(mfrow=c(1, 1), mar=c(1,4,4,8))
 
   if (length(featuregroup) == 1) {
-    corrplot(corr_pair$r,type = "full", order =  "hclust",addrect = 2,method = "square",tl.col = "black",tl.srt = 60, cl.cex = 1.3, pch.cex = 0.5, tl.cex = 0.7)
+    corrplot(corr_pair$r,type = "full", order =  "hclust",addrect = clustno ,method = "square",tl.col = "black",tl.srt = 60, cl.cex = 1.3, pch.cex = 0.5, tl.cex = 0.7)
     out=list(corr_pair$r,corr_pair$P)
 
   } else {
