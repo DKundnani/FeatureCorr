@@ -59,6 +59,8 @@ https://github.com/SoftwareImpacts/SIMPAC-2021-53/blob/master/README.Rmd
 
 #Update Readme
 devtools::build_readme()
+
+
 #Submit to CRAN
 devtools::spell_check()
 check_rhub(".", platforms = c("windows-x86_64-release","ubuntu-gcc-release","macos-highsierra-release")) #Check package on R-hub for CRAN submissions
@@ -70,8 +72,6 @@ devtools::release()
 
 
 devtools::build_readme()
-
-
 
 rhub::platforms()
 check_rhub(".", platforms = c("windows-x86_64-release","ubuntu-gcc-release","macos-highsierra-release")) #Check package on R-hub for CRAN submissions
