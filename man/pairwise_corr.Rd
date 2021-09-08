@@ -4,7 +4,7 @@
 \alias{pairwise_corr}
 \title{Pairwise Correlation}
 \usage{
-pairwise_corr(df,featurelist, featuregroup,visorder,corrmeth)
+pairwise_corr(df,featurelist, featuregroup,visorder,corrmeth, clustno=NULL)
 }
 \arguments{
 \item{df}{numerical dataframe with rows having series of values for a single feature}
@@ -16,12 +16,14 @@ pairwise_corr(df,featurelist, featuregroup,visorder,corrmeth)
 \item{visorder}{The ordering method of the correlation matrix.'original' for original order ,'AOE' for the angular order of the eigenvectors, 'FPC' for the first principal component order, 'hclust'(default) for the hierarchical clustering order, 'alphabet' for alphabetical order.}
 
 \item{corrmeth}{Correlation method used. 'pearson' or 'spearman' (default='pearson')}
+
+\item{clustno}{number of clusters expected to be drawn on the plot (default = NULL)}
 }
 \description{
 Get Pair wise correlations for a given list of features
 }
 \examples{
-corr_pair<-pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40), visorder="hclust")
+corr_pair<-pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40), visorder="hclust", clustno=2)
 featgroup<-grepl( "RNASE",rownames(logTCGA40)) #optional, a set of TRUE/FALSE of length featurelist
 corr_pair<-pairwisecorr <- pairwise_corr(df=logTCGA40,featurelist=rownames(logTCGA40),
                                          featuregroup=featgroup)
