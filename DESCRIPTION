@@ -21,7 +21,8 @@ Imports:
     rlang (>= 0.4.11),          
     dplyr (>= 1.0.7),          
     KernSmooth (>= 2.23-17),
-    BiocManager (>= 1.30.16)
+    BiocManager (>= 1.30.16),
+    preprocessCore (>= 1.50.0)
 Suggests:
     fdrtool (>= 1.2.16),
     longitudinal (>= 1.1.12),
@@ -30,11 +31,11 @@ Suggests:
     survival (>= 3.1-12),
     lattice (>= 0.20-41),
     knitr
-License: GPL-3 
+License: GPL-3 + file LICENSE
 Language: R
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/DKundnani/FeatureCorr
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2

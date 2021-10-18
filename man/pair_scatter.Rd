@@ -15,6 +15,8 @@ pair_scatter(df,featurelist, feature1, feature2, corrmeth)
 \item{feature1, feature2}{Features to be compared}
 
 \item{corrmeth}{Correlation method used. 'pearson' or 'spearman' (default='pearson')}
+
+\item{col}{Color for scatter plot, default="#1f78b4"}
 }
 \description{
 Pair Scatter

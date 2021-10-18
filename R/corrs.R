@@ -121,7 +121,7 @@ pairwise_corr <- function(df,featurelist, featuregroup='NA', visorder="hclust", 
 #' @param featurelist list of features in the sequence as it occurs in the Dataframe
 #' @param feature1,feature2 Features to be compared
 #' @param corrmeth Correlation method used. 'pearson' or 'spearman' (default='pearson')
-#'
+#' @param col Color for scatter plot, default="#1f78b4"
 #'
 #' @usage pair_scatter(df,featurelist, feature1, feature2, corrmeth)
 #'
@@ -132,14 +132,14 @@ pairwise_corr <- function(df,featurelist, featuregroup='NA', visorder="hclust", 
 #'                          feature1="RNASEH2A", feature2="PCNA", corrmeth='pearson')
 #'
 #' @export
-pair_scatter <- function(df,featurelist, feature1, feature2,corrmeth='pearson'){
+pair_scatter <- function(df,featurelist, feature1, feature2,corrmeth='pearson', col= "#1f78b4"){
   if (length(featurelist)!=nrow(df)) { stop("Error: Make sure the length of feature list is same as the number of rows in the dataframe", call. = FALSE) }
 
   data=as.data.frame(t(df))
   colnames(data)<-featurelist
   #scatter plot
   #par(mfrow = c(1, 1))
-  o <- ggscatter(data, x = feature1 , y = feature2, color = "#2c7fb8", margin.params = list(fill = "lightgray"), add = "reg.line", add.params = list(color='red', fille='lightgray'),conf.int = TRUE, cor.coef = TRUE, cor.coeff.args = list(method=corrmeth,label.x.npc = 0,label.y.npc = 1, size=10)) +theme_bw()
+  o <- ggscatter(data, x = feature1 , y = feature2,  size = 0.7, color = col, margin.params = list(fill = "lightgray"), add = "reg.line", add.params = list(color='red', fille='lightgray'),conf.int = TRUE, cor.coef = TRUE, cor.coeff.args = list(method=corrmeth,label.x.npc = 0,label.y.npc = 1, size=10)) +theme_bw()
   p <-ggMarginal(o, size = 2, type = "histogram", col = "blue", fill = "#2c7fb8")
 
   plot.new()

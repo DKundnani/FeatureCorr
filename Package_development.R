@@ -70,8 +70,9 @@ devtools::release()
 usethis::use_github_action("check-standard")
 devtools::release()
 
-
 devtools::build_readme()
 
 rhub::platforms()
 check_rhub(".", platforms = c("windows-x86_64-release","ubuntu-gcc-release","macos-highsierra-release")) #Check package on R-hub for CRAN submissions
+
+library(FeatureCorr)

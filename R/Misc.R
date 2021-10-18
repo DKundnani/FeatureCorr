@@ -4,7 +4,11 @@ ztransfun<-function(col){
 #' Data Transformation and filtration
 #' Transformation of data using one of the four mentioned methods and filtering based on median value
 #'
-#'
+#' @importFrom grDevices heat.colors recordPlot
+#' @importFrom graphics axis boxplot contour hist par plot.new smoothScatter text
+#' @importFrom stats cor.test median quantile sd
+#' @importFrom utils install.packages
+#' @importFrom preprocessCore normalize.quantiles
 #' @param df numerical dataframe with rows having series of values for a single feature
 #' @param transformation type of transformation method ''Log2' or 'Z-score' or 'quantile' or 'NA' (no) transformaiton
 #' @param featurelist listing of feature names or ids to measure correlation between
@@ -26,9 +30,9 @@ data_transform <- function(df,transformation='log2',featurelist, medianthres='NA
   } else if (transformation == 'Z-score') {
     newdf<-apply(df, 2, ztransfun)
   } else if (transformation == 'quantile') {
-    if (!requireNamespace("BiocManager", quietly = TRUE))
-      install.packages("BiocManager")
-    BiocManager::install(c("preprocessCore"))
+    #if (!requireNamespace("BiocManager", quietly = TRUE))
+      #install.packages("BiocManager")
+    #BiocManager::install(c("preprocessCore"))
     newdf<-normalize.quantiles(as.matrix(df))
   } else if (transformation == 'NA') {
     newdf<-normalize.quantiles(as.matrix(df))
