@@ -6,7 +6,7 @@ setwd('C:/Users/deepa/Dropbox (GaTech)/scripts/GitHub/FeatureCorr')
 
 '''
 Prepare a text file called DESCRIPTION with folwoing details
-Package: CorrClust
+Package: FeatureCorr
 Type: Package
 Title: Finding associations through correlation of varied features
 Version: 0.0.1.0
