@@ -43,8 +43,8 @@ data_transform <- function(df,transformation='log2',featurelist, medianthres='NA
 
   OldMedianValue<-apply(df, 1, median, na.rm=F)
   NewMedianValue<-apply(newdf, 1, median, na.rm=F)
-  Median=data.frame("MedianValues of Original DAtaframe" = OldMedianValue,
-                    "MedianValues of Transformed DAtaframe" = NewMedianValue)
+  Median=data.frame("Median Values of Original DAtaframe" = OldMedianValue,
+                    "Median Values of Transformed DAtaframe" = NewMedianValue)
 
   if (medianthres!='NA'){
     newdf=newdf[NewMedianValue>=medianthres,]

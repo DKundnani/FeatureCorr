@@ -45,7 +45,7 @@ primefeature_corr <- function(df,featurelist,primefeature, corrmeth='pearson', q
 
     p<-cor.test(as.numeric(df[i,]), as.numeric(df[x,]), method=corrmeth)
     corr[i]<-p$estimate
-    pval<-p$p.value
+    pval[i]<-p$p.value
   }
 
   df$Features<-featurelist

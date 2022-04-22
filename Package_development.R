@@ -1,6 +1,8 @@
 install.packages("devtools")
 install.packages("roxygen2")
-setwd('C:/Users/deepa/Dropbox (GaTech)/scripts/GitHub/CorrClust')
+install.packages("usethis")
+
+setwd('C:/Users/deepa/Dropbox (GaTech)/scripts/GitHub/FeatureCorr')
 
 '''
 Prepare a text file called DESCRIPTION with folwoing details
@@ -11,7 +13,6 @@ Version: 0.0.1.0
 '''
 
 #Setting up enviroment to debug, document and create a package
-install.packages("usethis")
 library(usethis)
 library(devtools)
 library(roxygen2)
