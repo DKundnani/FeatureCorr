@@ -11,7 +11,7 @@
 #' @importFrom MASS kde2d
 #' @import ggExtra
 #' @import GeneNet
-#'
+#' @import KernSmooth
 #'
 #' @param df A dataframe with echo row corresponding to a feature
 #' @param featurelist listing of feature names or ids to measure correlation between

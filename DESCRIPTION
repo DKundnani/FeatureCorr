@@ -19,7 +19,8 @@ Imports:
     Hmisc (>= 4.5-0),
     ggplot2 (>= 3.3.5),                       
     rlang (>= 0.4.11),          
-    dplyr (>= 1.0.7),          
+    dplyr (>= 1.0.7),
+    KernSmooth (>= 2.23-17),
     preprocessCore (>= 1.50.0)
 Suggests:
     fdrtool (>= 1.2.16),
