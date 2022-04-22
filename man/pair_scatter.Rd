@@ -5,7 +5,7 @@
 \title{Pair Scatter
 Scatter between two chosen features.}
 \usage{
-pair_scatter(df,featurelist, feature1, feature2, corrmeth)
+pair_scatter(df,featurelist, feature1, feature2, corrmeth, col)
 }
 \arguments{
 \item{df}{numerical dataframe with rows having series of values for a single feature}

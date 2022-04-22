@@ -123,7 +123,7 @@ pairwise_corr <- function(df,featurelist, featuregroup='NA', visorder="hclust", 
 #' @param corrmeth Correlation method used. 'pearson' or 'spearman' (default='pearson')
 #' @param col Color for scatter plot, default="#1f78b4"
 #'
-#' @usage pair_scatter(df,featurelist, feature1, feature2, corrmeth)
+#' @usage pair_scatter(df,featurelist, feature1, feature2, corrmeth, col)
 #'
 #' @examples
 #' pscatter <- pair_scatter(df=TCGA40,featurelist=rownames(TCGA40),
